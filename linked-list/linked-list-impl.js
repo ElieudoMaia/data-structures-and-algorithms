@@ -34,13 +34,7 @@ export class LinkedList {
     if (index === 0) return this.prepend(value);
     if (index === this.length - 1) return this.append(value);
 
-    let currentNode = this.head;
-    let i = 0;
-
-    while (i !== index - 1) {
-      currentNode = currentNode.next;
-      i += 1;
-    }
+    const currentNode = this.#traverseToIndex(index - 1);
 
     const newNode = new Node(value, currentNode.next);
     currentNode.next = newNode;
@@ -53,29 +47,36 @@ export class LinkedList {
     const isIndexOutOfBounds = index < 0 || index >= this.length;
     if (isIndexOutOfBounds) throw new Error('Index out of bounds');
 
-    if (this.length === 1) {
-      throw new Error('Cannot remove root Node');
-    }
+    if (index === 0) return this.#removeHead();
 
-    if (index === 0) {
-      this.head = this.head.next;
-      this.length -= 1;
-      return this;
-    }
+    const currentNode = this.#traverseToIndex(index - 1);
 
-    let currentNode = this.head;
-    let i = 0;
-
-    while (i !== index - 1) {
-      currentNode = currentNode.next;
-      i += 1;
-    }
-
-    if (index === this.length - 1) {
+    const isRemovingTail = index === this.length - 1;
+    if (isRemovingTail) {
       this.tail = currentNode;
     }
 
     currentNode.next = currentNode.next.next;
+    this.length -= 1;
+    return this;
+  }
+
+  #traverseToIndex(index) {
+    let currentNode = this.head;
+    let i = 0;
+
+    while (i !== index) {
+      currentNode = currentNode.next;
+      i += 1;
+    }
+
+    return currentNode;
+  }
+
+  #removeHead() {
+    if (this.length === 1) throw new Error('Cannot remove root Node');
+
+    this.head = this.head.next;
     this.length -= 1;
     return this;
   }
