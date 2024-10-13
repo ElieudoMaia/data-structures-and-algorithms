@@ -44,6 +44,7 @@ class LinkedList {
 
     const newNode = new Node(value, currentNode.next);
     currentNode.next = newNode;
+    this.length += 1;
 
     return this;
   }
