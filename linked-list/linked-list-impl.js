@@ -48,6 +48,37 @@ class LinkedList {
 
     return this;
   }
+
+  remove(index) {
+    const isIndexOutOfBounds = index < 0 || index >= this.length;
+    if (isIndexOutOfBounds) throw new Error('Index out of bounds');
+
+    if (this.length === 1) {
+      throw new Error('Cannot remove root Node');
+    }
+
+    if (index === 0) {
+      this.head = this.head.next;
+      this.length -= 1;
+      return this;
+    }
+
+    let currentNode = this.head;
+    let i = 0;
+
+    while (i !== index - 1) {
+      currentNode = currentNode.next;
+      i += 1;
+    }
+
+    if (index === this.length - 1) {
+      this.tail = currentNode;
+    }
+
+    currentNode.next = currentNode.next.next;
+    this.length -= 1;
+    return this;
+  }
 }
 
 const list = new LinkedList(10);
@@ -62,4 +93,9 @@ list.prepend(3);
 console.log(JSON.stringify(list));
 
 list.insert(2, 11);
+console.log(JSON.stringify(list));
+
+console.log('list.length', list.length);
+
+list.remove(3);
 console.log(JSON.stringify(list));
