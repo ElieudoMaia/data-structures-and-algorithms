@@ -5,7 +5,7 @@ class Node {
   }
 }
 
-class LinkedList {
+export class LinkedList {
   constructor(value) {
     this.head = new Node(value, null);
     this.tail = this.head;
@@ -80,22 +80,3 @@ class LinkedList {
     return this;
   }
 }
-
-const list = new LinkedList(10);
-console.log(list);
-
-list.append(5).append(16);
-console.log(list);
-
-console.log(list.head.next.next.value);
-
-list.prepend(3);
-console.log(JSON.stringify(list));
-
-list.insert(2, 11);
-console.log(JSON.stringify(list));
-
-console.log('list.length', list.length);
-
-list.remove(3);
-console.log(JSON.stringify(list));
