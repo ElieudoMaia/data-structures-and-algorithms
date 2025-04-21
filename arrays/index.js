@@ -1,4 +1,4 @@
-class ArrayV2 {
+export class ArrayV2 {
   constructor() {
     this.length = 0;
     this.data = {};
@@ -39,29 +39,4 @@ class ArrayV2 {
       },
     };
   }
-}
-
-const arr1 = new ArrayV2();
-arr1.push('a');
-arr1.push('b');
-arr1.push('c');
-arr1.push('d');
-
-console.log('Array Created', arr1);
-console.log('arr1.get(2)', arr1.get(2));
-
-arr1.pop();
-
-console.log('arr1.pop()', arr1);
-
-arr1.push('d');
-
-console.log(`arr1.push('d')`, arr1);
-
-arr1.delete(1);
-
-console.log('arr1.delete(1)', arr1);
-
-for (const i of arr1) {
-  console.log(i);
 }
