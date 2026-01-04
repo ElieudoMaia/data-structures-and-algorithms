@@ -17,3 +17,5 @@ export const mergeSortedArrays = (arr1, arr2) => {
 
   return arr1;
 };
+
+[1, 4, 7, 0, 0, 0], [3, 5, 6];
